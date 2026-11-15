@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic Loop</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f4f1;
+      padding: 1rem;
+    }
+
+    .diagram-wrapper {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="diagram-wrapper">
+  <svg viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg"
+       role="img" aria-label="Agentic loop diagram"
+       font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <defs>
+      <marker id="arr-dark" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#555" />
+      </marker>
+      <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#7aaa7a" />
+      </marker>
+      <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#c87050" />
+      </marker>
+    </defs>
+
+    <!-- ── Agentic loop dashed border ── -->
+    <rect x="118" y="18" width="636" height="114"
+          rx="12" ry="12"
+          fill="none" stroke="#b0b8b0" stroke-width="1.5" stroke-dasharray="6,4" />
+    <!-- Label on top edge -->
+    <rect x="320" y="10" width="100" height="16" fill="#f5f4f1" />
+    <text x="370" y="22" text-anchor="middle" font-size="12" fill="#8a9a8a">agentic loop</text>
+
+    <!-- ── Boxes ── -->
+
+    <!-- Your prompt (gray) -->
+    <rect x="14" y="50" width="90" height="50" rx="8" fill="#e8e6e0" />
+    <text x="59" y="72" text-anchor="middle" font-size="13" font-weight="500" fill="#444">Your</text>
+    <text x="59" y="88" text-anchor="middle" font-size="13" font-weight="500" fill="#444">prompt</text>
+
+    <!-- Gather context (green) -->
+    <rect x="148" y="50" width="128" height="50" rx="8" fill="#b8cdb8" />
+    <text x="212" y="72" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3a2a">Gather</text>
+    <text x="212" y="88" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3a2a">context</text>
+
+    <!-- Take action (green) -->
+    <rect x="322" y="50" width="128" height="50" rx="8" fill="#b8cdb8" />
+    <text x="386" y="79" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3a2a">Take action</text>
+
+    <!-- Verify results (green) -->
+    <rect x="496" y="50" width="128" height="50" rx="8" fill="#b8cdb8" />
+    <text x="560" y="72" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3a2a">Verify</text>
+    <text x="560" y="88" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3a2a">results</text>
+
+    <!-- Done (gray) -->
+    <rect x="756" y="50" width="90" height="50" rx="8" fill="#e8e6e0" />
+    <text x="801" y="79" text-anchor="middle" font-size="13" font-weight="500" fill="#444">Done</text>
+
+    <!-- ── Main flow arrows (solid dark) ── -->
+    <line x1="104" y1="75" x2="144" y2="75"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arr-dark)" />
+    <line x1="276" y1="75" x2="318" y2="75"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arr-dark)" />
+    <line x1="450" y1="75" x2="492" y2="75"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arr-dark)" />
+    <line x1="624" y1="75" x2="752" y2="75"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arr-dark)" />
+
+    <!-- ── Feedback loop: Verify results ↩ Gather context (green dashed) ── -->
+    <path d="M 560,100 L 560,148 L 212,148 L 212,104"
+          fill="none" stroke="#7aaa7a" stroke-width="1.5"
+          stroke-dasharray="5,4" marker-end="url(#arr-green)" />
+
+    <!-- ── Interrupt / steer box (orange dashed border) ── -->
+    <rect x="14" y="172" width="158" height="50" rx="8"
+          fill="none" stroke="#c87050" stroke-width="1.5" stroke-dasharray="5,4" />
+    <text x="93" y="192" text-anchor="middle" font-size="11.5" fill="#b06040">You: interrupt, steer,</text>
+    <text x="93" y="208" text-anchor="middle" font-size="11.5" fill="#b06040">or add context</text>
+
+    <!-- ── Interrupt → Take action (orange dashed) ── -->
+    <path d="M 172,197 L 386,197 L 386,104"
+          fill="none" stroke="#c87050" stroke-width="1.5"
+          stroke-dasharray="5,4" marker-end="url(#arr-orange)" />
+  </svg>
+</div>
+</body>
+</html>
